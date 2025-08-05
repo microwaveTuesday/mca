@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<string> usernames = new List<string>();
+
+        Console.WriteLine("Enter 5 usernames:");
+        for (int i = 0; i < 5; i++)
+        {
+            usernames.Add(Console.ReadLine());
+        }
+
+        Console.Write("\nEnter a character to search: ");
+        string ch = Console.ReadLine().ToLower();
+
+        Console.WriteLine("\nUsernames containing that character:");
+        foreach (string name in usernames)
+        {
+            if (name.ToLower().Contains(ch))
+            {
+                Console.WriteLine(name);
+            }
+        }
+    }
+}
