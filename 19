@@ -1,0 +1,49 @@
+using System;
+
+class FamilyBudget
+{
+    static void Main()
+    {
+        string[] categories = { "Food", "Rent", "Utilities", "Transport", "Others" };
+        double[] expenses = new double[5];
+        double total = 0;
+        double monthlyIncome = 25000;
+
+        Console.WriteLine("Enter budget for the following categories:");
+
+        for (int i = 0; i < categories.Length; i++)
+        {
+            Console.Write($"{categories[i]}: ");
+            while (!double.TryParse(Console.ReadLine(), out expenses[i]) || expenses[i] < 0)
+            {
+                Console.Write("Invalid input. Enter a valid number: ");
+            }
+            total += expenses[i];
+        }
+
+        Console.WriteLine($"\nTotal Budget: PHP {total}");
+
+        if (total > monthlyIncome)
+        {
+            Console.WriteLine("⚠️ Over budget!");
+
+            // Find the category with highest expense
+            double maxExpense = expenses[0];
+            int maxIndex = 0;
+            for (int i = 1; i < expenses.Length; i++)
+            {
+                if (expenses[i] > maxExpense)
+                {
+                    maxExpense = expenses[i];
+                    maxIndex = i;
+                }
+            }
+
+            Console.WriteLine($"Suggestion: Reduce spending on '{categories[maxIndex]}' (PHP {maxExpense})");
+        }
+        else
+        {
+            Console.WriteLine("✅ Within budget. Good job!");
+        }
+    }
+}
