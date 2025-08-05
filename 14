@@ -1,0 +1,52 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int numStudents = 5;
+        int numSubjects = 3;
+
+        int[,] grades = new int[numStudents, numSubjects];
+        int[] totalScores = new int[numStudents];
+        string[] studentNames = new string[numStudents];
+
+        // Input grades
+        for (int i = 0; i < numStudents; i++)
+        {
+            Console.Write($"Enter name of Student #{i + 1}: ");
+            studentNames[i] = Console.ReadLine();
+
+            for (int j = 0; j < numSubjects; j++)
+            {
+                int grade;
+                do
+                {
+                    Console.Write($"Enter grade {j + 1} for {studentNames[i]} (0-100): ");
+                    grade = int.Parse(Console.ReadLine());
+                    if (grade < 0 || grade > 100)
+                    {
+                        Console.WriteLine("Invalid! Grade must be between 0 and 100.");
+                    }
+                } while (grade < 0 || grade > 100);
+
+                grades[i, j] = grade;
+                totalScores[i] += grade;
+            }
+        }
+
+        // Copy scores for sorting
+        int[] sortedScores = (int[])totalScores.Clone();
+        Array.Sort(sortedScores);
+        Array.Reverse(sortedScores); // Highest first
+
+        // Display results with ranking
+        Console.WriteLine("\n--- Student Totals and Rankings ---");
+        for (int i = 0; i < numStudents; i++)
+        {
+            int rank = Array.IndexOf(sortedScores, totalScores[i]) + 1;
+            Console.WriteLine($"{studentNames[i]} - Total: {totalScores[i]} - Rank: {rank}");
+        }
+    }
+}
+
