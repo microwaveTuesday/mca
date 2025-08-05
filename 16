@@ -1,30 +1,35 @@
-#include <iostream>
-#include <string>
-#include <algorithm> // for transform()
-using namespace std;
+using System;
 
-int main() {
-    const int totalPatients = 5;
-    string symptoms[totalPatients];
+class Program
+{
+    static void Main()
+    {
+        // Create an array to store 5 symptoms
+        string[] symptoms = new string[5];
 
-    cout << "Enter symptoms for 5 patients:\n";
+        Console.WriteLine("Enter the symptoms of 5 patients:");
 
-    for (int i = 0; i < totalPatients; i++) {
-        cout << "Patient " << i + 1 << ": ";
-        getline(cin, symptoms[i]);
+        // Loop through each patient
+        for (int i = 0; i < 5; i++)
+        {
+            Console.Write("Enter symptom for patient " + (i + 1) + ": ");
+            symptoms[i] = Console.ReadLine().ToLower(); // make sure it's lowercase
 
-        // Convert input to lowercase
-        transform(symptoms[i].begin(), symptoms[i].end(), symptoms[i].begin(), ::tolower);
+            // Check the symptom and assign to a department
+            if (symptoms[i] == "fever" || symptoms[i] == "cough")
+            {
+                Console.WriteLine("Department: General Medicine");
+            }
+            else if (symptoms[i] == "injury" || symptoms[i] == "burn")
+            {
+                Console.WriteLine("Department: Emergency");
+            }
+            else
+            {
+                Console.WriteLine("Department: Refer to Specialist");
+            }
 
-        // Check and assign department
-        if (symptoms[i].find("fever") != string::npos || symptoms[i].find("cough") != string::npos) {
-            cout << "→ Assigned to General Medicine\n";
-        } else if (symptoms[i].find("injury") != string::npos || symptoms[i].find("burn") != string::npos) {
-            cout << "→ Assigned to Emergency\n";
-        } else {
-            cout << "→ Referred to Specialist\n";
+            Console.WriteLine(); // just a blank line to keep it neat
         }
     }
-
-    return 0;
 }
