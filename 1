@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int ages[5];  // Array to store 5 ages
+    int teenagerCount = 0;
+
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter age for customer " << (i + 1) << ": ";
+        cin >> ages[i];
+
+        // Validate age input
+        while (ages[i] < 10 || ages[i] > 99) {
+            cout << "Invalid! Age must be between 10 and 99. Please re-enter: ";
+            cin >> ages[i];
+        }
+
+        // Count if it's a teenager
+        if (ages[i] >= 13 && ages[i] <= 19) {
+            teenagerCount++;
+        }
+    }
+
+    // Output valid ages
+    cout <<
