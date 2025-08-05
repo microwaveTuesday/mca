@@ -1,49 +1,66 @@
-#include <iostream>
-using namespace std;
+using System;
 
-int main() {
-    const int totalUsers = 20;
-    int luckyNumbers[totalUsers];
-    const int winningNumbers[] = {7, 13, 28, 42, 69}; // Predefined winning numbers
-    const int totalWinners = 5;
+class Program
+{
+    static void Main()
+    {
+        // Array to store 20 lucky numbers from users
+        int[] luckyNumbers = new int[20];
 
-    cout << "Enter your lucky number (1 to 99):" << endl;
+        // Predefined winning numbers
+        int[] winningNumbers = { 7, 13, 21, 42, 55, 77 };
 
-    // Input lucky numbers
-    for (int i = 0; i < totalUsers; i++) {
-        int number;
-        cout << "User " << i + 1 << ": ";
-        cin >> number;
+        Console.WriteLine("Enter your lucky numbers (between 1 and 99):");
 
-        // Validate number
-        if (number < 1 || number > 99) {
-            cout << "Invalid number! Please enter between 1 and 99.\n";
-            i--; // Ask again
-        } else {
-            luckyNumbers[i] = number;
-        }
-    }
+        // Ask 20 users for their lucky numbers
+        for (int i = 0; i < 20; i++)
+        {
+            int number;
 
-    cout << "\nChecking for winners...\n";
+            while (true)
+            {
+                Console.Write("User " + (i + 1) + ", enter your lucky number: ");
+                string input = Console.ReadLine();
 
-    // Check and display results
-    for (int i = 0; i < totalUsers; i++) {
-        bool isWinner = false;
+                // Try converting input to a number
+                bool isValid = int.TryParse(input, out number);
 
-        // Check if lucky number is in winningNumbers
-        for (int j = 0; j < totalWinners; j++) {
-            if (luckyNumbers[i] == winningNumbers[j]) {
-                isWinner = true;
-                break;
+                // Check if it's a valid number between 1 and 99
+                if (isValid && number >= 1 && number <= 99)
+                {
+                    luckyNumbers[i] = number;
+                    break; // exit the while loop
+                }
+                else
+                {
+                    Console.WriteLine("Invalid number! Please enter a number from 1 to 99.");
+                }
             }
+
+            // Check if the entered number is a winning number
+            bool isWinner = false;
+            for (int j = 0; j < winningNumbers.Length; j++)
+            {
+                if (luckyNumbers[i] == winningNumbers[j])
+                {
+                    isWinner = true;
+                    break;
+                }
+            }
+
+            // Congratulate the winner
+            if (isWinner)
+            {
+                Console.WriteLine("🎉 Congratulations, User " + (i + 1) + "! Your number " + luckyNumbers[i] + " is a WINNING number!");
+            }
+            else
+            {
+                Console.WriteLine("Thank you, User " + (i + 1) + ". Better luck next time!");
+            }
+
+            Console.WriteLine(); // Blank line for neatness
         }
 
-        if (isWinner) {
-            cout << "User " << i + 1 << " picked " << luckyNumbers[i] << " - 🎉 Congratulations! You're a winner!\n";
-        } else {
-            cout << "User " << i + 1 << " picked " << luckyNumbers[i] << " - Sorry, not a winning number.\n";
-        }
+        Console.WriteLine("All users have entered their numbers. Good luck next time!");
     }
-
-    return 0;
 }
