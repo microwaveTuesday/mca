@@ -1,0 +1,48 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string[] votes = new string[10]; // To store 10 votes
+        int voteA = 0, voteB = 0, voteC = 0;
+
+        Console.WriteLine("Candidates: Alice, Bob, Charlie");
+        Console.WriteLine("Enter your vote (type the candidate's name):");
+
+        // Step 1: Input 10 votes
+        for (int i = 0; i < votes.Length; i++)
+        {
+            Console.Write($"Vote #{i + 1}: ");
+            string input = Console.ReadLine().ToLower(); // Case-insensitive comparison
+
+            if (input == "alice")
+                voteA++;
+            else if (input == "bob")
+                voteB++;
+            else if (input == "charlie")
+                voteC++;
+            else
+                Console.WriteLine("Invalid vote. Vote not counted.");
+        }
+
+        // Step 2: Show results
+        Console.WriteLine("\n--- Voting Results ---");
+        Console.WriteLine($"Alice: {voteA} vote(s)");
+        Console.WriteLine($"Bob: {voteB} vote(s)");
+        Console.WriteLine($"Charlie: {voteC} vote(s)");
+
+        // Step 3: Determine winner
+        string winner = "";
+        if (voteA > voteB && voteA > voteC)
+            winner = "Alice";
+        else if (voteB > voteA && voteB > voteC)
+            winner = "Bob";
+        else if (voteC > voteA && voteC > voteB)
+            winner = "Charlie";
+        else
+            winner = "It's a tie!";
+
+        Console.WriteLine($"\nWinner: {winner}");
+    }
+}
