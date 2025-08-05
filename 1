@@ -1,25 +1,60 @@
-#include <iostream>
-using namespace std;
+using System;
 
-int main() {
-    int ages[5];  // Array to store 5 ages
-    int teenagerCount = 0;
+class CustomerAgeSurvey
+{
+    static void Main()
+    {
+        int[] ages = new int[5];
+        int teenagerCount = 0;
 
-    for (int i = 0; i < 5; i++) {
-        cout << "Enter age for customer " << (i + 1) << ": ";
-        cin >> ages[i];
+        Console.WriteLine("Customer Age Survey");
 
-        // Validate age input
-        while (ages[i] < 10 || ages[i] > 99) {
-            cout << "Invalid! Age must be between 10 and 99. Please re-enter: ";
-            cin >> ages[i];
+        for (int i = 0; i < 5; i++)
+        {
+            int age;
+            bool valid = false;
+
+            // Loop until a valid age is entered
+            do
+            {
+                Console.Write($"Enter age for customer {i + 1} (10-99): ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out age))
+                {
+                    if (age >= 10 && age <= 99)
+                    {
+                        ages[i] = age;
+                        valid = true;
+
+                        // Check if it's a teenager
+                        if (age >= 13 && age <= 19)
+                        {
+                            teenagerCount++;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid age. Age must be between 10 and 99.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
+
+            } while (!valid);
         }
 
-        // Count if it's a teenager
-        if (ages[i] >= 13 && ages[i] <= 19) {
-            teenagerCount++;
+        // Output valid ages
+        Console.WriteLine("\nList of valid ages:");
+        foreach (int age in ages)
+        {
+            Console.WriteLine($"- {age}");
         }
+
+        // Output teenager count
+        Console.WriteLine($"\nNumber of teenagers (13–19): {teenagerCount}");
     }
+}
 
-    // Output valid ages
-    cout <<
