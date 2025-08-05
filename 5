@@ -1,0 +1,37 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] numbers = new int[10]; // To store 10 integers
+        int evenCount = 0;
+        int oddCount = 0;
+        int divisibleBy5Count = 0;
+
+        // Step 1: Get 10 numbers from the user
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            Console.Write("Enter integer #" + (i + 1) + ": ");
+            numbers[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        // Step 2: Process the numbers
+        foreach (int num in numbers)
+        {
+            if (num % 2 == 0)
+                evenCount++;
+            else
+                oddCount++;
+
+            if (num % 5 == 0)
+                divisibleBy5Count++;
+        }
+
+        // Step 3: Display the results
+        Console.WriteLine("\nResults:");
+        Console.WriteLine("Even numbers: " + evenCount);
+        Console.WriteLine("Odd numbers: " + oddCount);
+        Console.WriteLine("Numbers divisible by 5: " + divisibleBy5Count);
+    }
+}
