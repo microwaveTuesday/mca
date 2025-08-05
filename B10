@@ -1,0 +1,21 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter a sentence: ");
+        string sentence = Console.ReadLine().ToLower();
+
+        int vowelCount = 0;
+        foreach (char ch in sentence)
+        {
+            if ("aeiou".Contains(ch))
+            {
+                vowelCount++;
+            }
+        }
+
+        Console.WriteLine("Total number of vowels: " + vowelCount);
+    }
+}
