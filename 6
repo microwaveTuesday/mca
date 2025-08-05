@@ -1,0 +1,34 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        float[] celsiusTemps = new float[5]; // Array for Celsius inputs
+
+        // Step 1: Input 5 temperatures in Celsius
+        for (int i = 0; i < celsiusTemps.Length; i++)
+        {
+            Console.Write("Enter temperature #" + (i + 1) + " in Celsius: ");
+            celsiusTemps[i] = float.Parse(Console.ReadLine());
+        }
+
+        // Step 2: Process and output
+        Console.WriteLine("\nResults:");
+        for (int i = 0; i < celsiusTemps.Length; i++)
+        {
+            float celsius = celsiusTemps[i];
+            float fahrenheit = celsius * 9 / 5 + 32;
+
+            string category;
+            if (celsius < 15)
+                category = "Cold";
+            else if (celsius <= 30)
+                category = "Warm";
+            else
+                category = "Hot";
+
+            Console.WriteLine($"Celsius: {celsius}°C  →  Fahrenheit: {fahrenheit}°F  →  Category: {category}");
+        }
+    }
+}
