@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to check if there's an uppercase letter
+bool hasUppercase(const string& password) {
+    for (char ch : password) {
+        if (isupper(ch)) return true;
+    }
+    return false;
+}
+
+// Function to check if there's a digit
+bool hasDigit(const string& password) {
+    for (char ch : password) {
+        if (isdigit(ch)) return true;
+    }
+    return false;
+}
+
+// Function to check if there's a special character
+bool hasSpecialChar(const string& password) {
+    string special = "!@#$%^&*()_+-={}[]|:;<>,.?/";
+    for (char ch : password) {
+        if (special.find(ch) != string::npos) return true;
+    }
+    return false;
+}
+
+int main() {
+    const int SIZE = 5;
+    string passwords[SIZE];
+
+    cout << "Enter 5 passwords:\n";
+    for (int i = 0; i < SIZE; i++) {
+        cout << "Password " << i + 1 << ": ";
+        getline(cin, passwords[i]);
+    }
+
+    cout << "\nPassword Strength Results:\n";
+    for (int i = 0; i < SIZE; i++) {
+        string pw = passwords[i];
+        bool longEnough = pw.length() >= 8;
+        bool hasUpper = hasUppercase(pw);
+        bool hasNum = hasDigit(pw);
+        bool hasSpecial = hasSpecialChar(pw);
+
+        cout << "Password " << i + 1 << ": " << pw << "\n";
+
+        // Classification using nested if-else
+        if (!longEnough) {
+            cout << " - Classification: Invalid (Too short)\n";
+        } else {
+            if (hasUpper) {
+                if (hasNum) {
+                    if (hasSpecial) {
+                        cout << " - Classification: Strong\n";
+                    } else {
+                        cout << " - Classification: Weak (Missing special character)\n";
+                    }
+                } else {
+                    cout << " - Classification: Weak (Missing digit)\n";
+                }
+            } else {
+                cout << " - Classification: Weak (Missing uppercase letter)\n";
+            }
+        }
+
+        cout << "-----------------------\n";
+    }
+
+    return 0;
+}
