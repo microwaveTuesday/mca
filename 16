@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+#include <algorithm> // for transform()
+using namespace std;
+
+int main() {
+    const int totalPatients = 5;
+    string symptoms[totalPatients];
+
+    cout << "Enter symptoms for 5 patients:\n";
+
+    for (int i = 0; i < totalPatients; i++) {
+        cout << "Patient " << i + 1 << ": ";
+        getline(cin, symptoms[i]);
+
+        // Convert input to lowercase
+        transform(symptoms[i].begin(), symptoms[i].end(), symptoms[i].begin(), ::tolower);
+
+        // Check and assign department
+        if (symptoms[i].find("fever") != string::npos || symptoms[i].find("cough") != string::npos) {
+            cout << "→ Assigned to General Medicine\n";
+        } else if (symptoms[i].find("injury") != string::npos || symptoms[i].find("burn") != string::npos) {
+            cout << "→ Assigned to Emergency\n";
+        } else {
+            cout << "→ Referred to Specialist\n";
+        }
+    }
+
+    return 0;
+}
