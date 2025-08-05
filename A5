@@ -1,0 +1,40 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> grades = new List<int>();
+        int[] gradeCounts = new int[5]; // A, B, C, D, F
+
+        Console.WriteLine("Enter 7 student grades (0-100):");
+
+        while (grades.Count < 7)
+        {
+            if (int.TryParse(Console.ReadLine(), out int grade) && grade >= 0 && grade <= 100)
+            {
+                grades.Add(grade);
+
+                switch (grade)
+                {
+                    case int g when g >= 90: gradeCounts[0]++; break;
+                    case int g when g >= 80: gradeCounts[1]++; break;
+                    case int g when g >= 70: gradeCounts[2]++; break;
+                    case int g when g >= 60: gradeCounts[3]++; break;
+                    default: gradeCounts[4]++; break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid grade. Enter a number between 0 and 100.");
+            }
+        }
+
+        Console.WriteLine("\nGrade Summary:");
+        Console.WriteLine($"A: {gradeCounts[0]}");
+        Console.WriteLine($"B: {gradeCounts[1]}");
+        Console.WriteLine($"C: {gradeCounts[2]}");
+        Console.WriteLine($"D: {gradeCounts[3]}");
+        Console.WriteLine($"F: {gradeCounts[4]}");
+    }
+}
