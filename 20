@@ -1,0 +1,39 @@
+using System;
+
+class PalindromeChecker
+{
+    static void Main()
+    {
+        string[] words = new string[5];
+
+        Console.WriteLine("Enter 5 words:");
+
+        // Input 5 words
+        for (int i = 0; i < 5; i++)
+        {
+            Console.Write($"Word {i + 1}: ");
+            words[i] = Console.ReadLine();
+        }
+
+        Console.WriteLine("\nResults:");
+        foreach (string word in words)
+        {
+            string reversed = "";
+
+            // Reverse the word using a loop
+            for (int i = word.Length - 1; i >= 0; i--)
+            {
+                reversed += word[i];
+            }
+
+            if (word.Equals(reversed, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"{word} → Palindrome");
+            }
+            else
+            {
+                Console.WriteLine($"{word} → Not a Palindrome");
+            }
+        }
+    }
+}
