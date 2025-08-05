@@ -1,0 +1,60 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        float[] scores = new float[5];   // Step 1: Store 5 float scores
+        char[] grades = new char[5];     // To store the grades (A–F)
+
+        // Step 2: Input scores and convert to grades
+        for (int i = 0; i < scores.Length; i++)
+        {
+            Console.Write("Enter percentage score #" + (i + 1) + ": ");
+            scores[i] = float.Parse(Console.ReadLine());
+
+            // Step 3: Convert score to grade using if-else
+            if (scores[i] >= 90)
+                grades[i] = 'A';
+            else if (scores[i] >= 80)
+                grades[i] = 'B';
+            else if (scores[i] >= 70)
+                grades[i] = 'C';
+            else if (scores[i] >= 60)
+                grades[i] = 'D';
+            else
+                grades[i] = 'F';
+        }
+
+        // Step 4: Print grades and feedback using switch-case
+        Console.WriteLine("\nResults and Feedback:");
+        for (int i = 0; i < grades.Length; i++)
+        {
+            Console.WriteLine($"Score {scores[i]}% → Grade {grades[i]}");
+
+            switch (grades[i])
+            {
+                case 'A':
+                    Console.WriteLine("Excellent work! 🏆");
+                    break;
+                case 'B':
+                    Console.WriteLine("Great job! 👍");
+                    break;
+                case 'C':
+                    Console.WriteLine("Good effort! Keep improving. 😊");
+                    break;
+                case 'D':
+                    Console.WriteLine("You passed, but there's room to grow. 💪");
+                    break;
+                case 'F':
+                    Console.WriteLine("Don't give up! Study harder next time. 📘");
+                    break;
+                default:
+                    Console.WriteLine("Invalid grade.");
+                    break;
+            }
+
+            Console.WriteLine(); // For spacing
+        }
+    }
+}
